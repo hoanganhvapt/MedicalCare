@@ -5,14 +5,16 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
+
 namespace Medical_Care.Controllers
 {
     public class ValuesController : ApiController
     {
         // GET api/values
-        public IEnumerable<string> Get()
+        public HttpResponseMessage Get()
         {
-            return new string[] { "value1", "value2" };
+            var res = new { key1 = "value1", key2 = "value2" };
+            return Request.CreateResponse(HttpStatusCode.OK, res);
         }
 
         // GET api/values/5

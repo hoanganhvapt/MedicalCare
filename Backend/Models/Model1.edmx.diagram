@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9812df9524854ccb974f3cb1755ea5b2" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_MedicalCareModel.admin_login" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.company_details" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.emp_register" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.hospital_info" Width="1.5" PointX="6.875" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policies" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policies_on_employees" Width="1.5" PointX="5" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_approval_details" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_request_details" Width="1.5" PointX="2.375" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_total_description" Width="1.5" PointX="8.875" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies_on_employees" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_emp_register_policy_request_details" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policy_request_details" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
