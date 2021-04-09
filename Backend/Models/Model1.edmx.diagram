@@ -14,10 +14,6 @@
         <EntityTypeShape EntityType="DB_MedicalCareModel.policy_approval_details" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MedicalCareModel.policy_request_details" Width="1.5" PointX="2.375" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_MedicalCareModel.policy_total_description" Width="1.5" PointX="8.875" PointY="1.375" IsExpanded="true" />
-        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies" />
-        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies_on_employees" />
-        <AssociationConnector Association="DB_MedicalCareModel.FK_emp_register_policy_request_details" />
-        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policy_request_details" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

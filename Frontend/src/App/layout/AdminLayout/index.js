@@ -24,24 +24,24 @@ const AdminLayout = (props, ref) => {
     }, []);
 
     const menu = routes.map((route, index) => {
-        if (dataUser.length !== 0) {
-            const idRole = dataUser[0].role_id;
-            if (route.role) {
-                for (let i = 0; i < route.role.length; i++) {
-                    if (idRole === route.role[i]) {
-                        return route.component ? (
-                            <Route
-                                key={index}
-                                path={route.path}
-                                exact={route.exact}
-                                name={route.name}
-                                render={(props) => <route.component {...props} />}
-                            />
-                        ) : null;
-                    } else continue;
-                }
-            }
-        }
+        // if (dataUser.length !== 0) {
+        // const idRole = dataUser[0].role_id;
+        // if (route.role) {
+        // for (let i = 0; i < route.role.length; i++) {
+        // if (idRole === route.role[i]) {
+        return route.component ? (
+            <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                name={route.name}
+                render={(props) => <route.component {...props} />}
+            />
+        ) : null;
+        // } else continue;
+        // }
+        // }
+        // }
     });
 
     return (

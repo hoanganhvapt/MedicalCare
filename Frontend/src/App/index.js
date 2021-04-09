@@ -22,12 +22,19 @@ const App = (props) => {
     const location = useLocation();
     const menu = routes.map((route, index) => {
         return route.component ? (
-            <Route key={index} path={route.path} exact={route.exact} name={route.name} render={(props) => <route.component {...props} />} />
+            <Route
+                key={index}
+                path={route.path}
+                exact={route.exact}
+                name={route.name}
+                render={(props) => <route.component {...props} />}
+            />
         ) : null;
     });
     useEffect(() => {
         CheckSession()
             .then((res) => {
+                console.log(res.data);
                 let result = res.data;
                 if (result.status === 404) return setDataUser("signin");
                 setDataUser("logged");
@@ -46,8 +53,10 @@ const App = (props) => {
             <ScrollToTop>
                 <Suspense fallback={<Loader />}>
                     <Switch>
-                        {dataUser === "signin" ? menu : <Route path="/" component={AdminLayout} />}
-                        {dataUser === "signin" ? <Redirect to="/auth/signin" /> : null}
+                        {menu}
+                        <Route path="/" component={AdminLayout} />
+                        {/* {dataUser === "signin" ? menu : <Route path="/" component={AdminLayout} />} */}
+                        {/* {dataUser === "signin" ? <Redirect to="/auth/signin" /> : null} */}
                     </Switch>
                 </Suspense>
             </ScrollToTop>

@@ -26,7 +26,5 @@ namespace Medical_Care.Models
         public string CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Medical { get; set; }
-    
-        public virtual company_details company_details { get; set; }
     }
 }

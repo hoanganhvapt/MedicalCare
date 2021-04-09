@@ -83,3 +83,10 @@ D:\Project_3\MedicalCare\Backend\obj\Debug\Medical Care.csproj.CoreCompileInputs
 D:\Project_3\MedicalCare\Backend\obj\Debug\Medical Care.csproj.CopyComplete
 D:\Project_3\MedicalCare\Backend\obj\Debug\Medical Care.dll
 D:\Project_3\MedicalCare\Backend\obj\Debug\Medical Care.pdb
+D:\Project_3\MedicalCare\Backend\bin\EntityFramework.dll
+D:\Project_3\MedicalCare\Backend\bin\EntityFramework.SqlServer.dll
+D:\Project_3\MedicalCare\Backend\bin\System.Web.Cors.dll
+D:\Project_3\MedicalCare\Backend\bin\System.Web.Http.Cors.dll
+D:\Project_3\MedicalCare\Backend\bin\EntityFramework.xml
+D:\Project_3\MedicalCare\Backend\bin\EntityFramework.SqlServer.xml
+D:\Project_3\MedicalCare\Backend\bin\System.Web.Http.Cors.xml

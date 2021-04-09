@@ -21,7 +21,5 @@ namespace Medical_Care.Models
         public Nullable<double> EMI { get; set; }
         public Nullable<int> CompanyId { get; set; }
         public string Medicalid { get; set; }
-    
-        public virtual company_details company_details { get; set; }
     }
 }

@@ -29,7 +29,5 @@ namespace Medical_Care.Models
         public string City { get; set; }
         public string PolicyStatus { get; set; }
         public Nullable<int> PolicyId { get; set; }
-    
-        public virtual policy_request_details policy_request_details { get; set; }
     }
 }

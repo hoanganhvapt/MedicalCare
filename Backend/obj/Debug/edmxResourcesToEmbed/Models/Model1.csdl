@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DB_MedicalCareModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="admin_login">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="company_details">
+    <Key>
+      <PropertyRef Name="CompanyId" />
+    </Key>
+    <Property Name="CompanyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="emp_register">
+    <Key>
+      <PropertyRef Name="EmpId" />
+    </Key>
+    <Property Name="EmpId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Joindate" Type="DateTime" Precision="3" />
+    <Property Name="Salary" Type="Double" />
+    <Property Name="Firstname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Lastname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="hospital_info">
+    <Key>
+      <PropertyRef Name="HospitalId" />
+    </Key>
+    <Property Name="HospitalId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HospitalName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="policies">
+    <Key>
+      <PropertyRef Name="PolicyId" />
+    </Key>
+    <Property Name="PolicyId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PolicyName" Type="Double" />
+    <Property Name="PolicyDesc" Type="Double" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="EMI" Type="Double" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="Medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="policies_on_employees">
+    <Key>
+      <PropertyRef Name="PoEId" />
+    </Key>
+    <Property Name="PoEId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PolicyId" Type="Int32" Nullable="false" />
+    <Property Name="PolicyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PolicyAmount" Type="Double" />
+    <Property Name="PolicyDuration" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="EMI" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+    <Property Name="PstarDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PendDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CompanyId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Medical" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="policy_approval_details">
+    <Key>
+      <PropertyRef Name="PolicyAppId" />
+    </Key>
+    <Property Name="PolicyAppId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Amount" Type="Double" />
+    <Property Name="Status" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="policy_request_details">
+    <Key>
+      <PropertyRef Name="RequestId" />
+    </Key>
+    <Property Name="RequestId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RequestDate" Type="DateTime" Precision="3" />
+    <Property Name="EmpId" Type="Int32" />
+    <Property Name="Policyname" Type="Int32" />
+    <Property Name="PolicyAmount" Type="Double" />
+    <Property Name="EMI" Type="Double" />
+    <Property Name="CompanyId" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="policy_total_description">
+    <Key>
+      <PropertyRef Name="PTDId" />
+    </Key>
+    <Property Name="PTDId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PolicyId" Type="Int32" />
+    <Property Name="PolicyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyDes" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="PolicyAmount" Type="Double" />
+    <Property Name="EMI" Type="Double" />
+    <Property Name="PolicyDurationInMonth" Type="Int32" />
+    <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="DB_MedicalCareEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="admin_login" EntityType="Self.admin_login" />
+    <EntitySet Name="company_details" EntityType="Self.company_details" />
+    <EntitySet Name="emp_register" EntityType="Self.emp_register" />
+    <EntitySet Name="hospital_info" EntityType="Self.hospital_info" />
+    <EntitySet Name="policies" EntityType="Self.policies" />
+    <EntitySet Name="policies_on_employees" EntityType="Self.policies_on_employees" />
+    <EntitySet Name="policy_approval_details" EntityType="Self.policy_approval_details" />
+    <EntitySet Name="policy_request_details" EntityType="Self.policy_request_details" />
+    <EntitySet Name="policy_total_description" EntityType="Self.policy_total_description" />
+  </EntityContainer>
+</Schema>

@@ -6,7 +6,12 @@ import { useSelector } from "react-redux";
 
 const Dashboard = () => {
     const dataUser = useSelector((state) => state.user.dataUser[0]);
-    return <Aux>{dataUser.role_id === 6 ? <Nvd3Chart /> : <NewIndex />}</Aux>;
+    return (
+        <Aux>
+            <Nvd3Chart />
+            {/* {dataUser.role_id === 6 ? <Nvd3Chart /> : <NewIndex />} */}
+        </Aux>
+    );
 };
 
 export default Dashboard;

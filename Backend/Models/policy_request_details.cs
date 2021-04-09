@@ -23,8 +23,5 @@ namespace Medical_Care.Models
         public Nullable<int> CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Status { get; set; }
-    
-        public virtual emp_register emp_register { get; set; }
-        public virtual company_details company_details { get; set; }
     }
 }

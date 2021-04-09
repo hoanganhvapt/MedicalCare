@@ -154,9 +154,6 @@
           <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="CompanyURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="policies" Relationship="DB_MedicalCareModel.FK_company_details_policies" FromRole="company_details" ToRole="policies" />
-          <NavigationProperty Name="policies_on_employees" Relationship="DB_MedicalCareModel.FK_company_details_policies_on_employees" FromRole="company_details" ToRole="policies_on_employees" />
-          <NavigationProperty Name="policy_request_details" Relationship="DB_MedicalCareModel.FK_company_details_policy_request_details" FromRole="company_details" ToRole="policy_request_details" />
         </EntityType>
         <EntityType Name="emp_register">
           <Key>
@@ -177,7 +174,6 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PolicyStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PolicyId" Type="Int32" />
-          <NavigationProperty Name="policy_request_details" Relationship="DB_MedicalCareModel.FK_emp_register_policy_request_details" FromRole="emp_register" ToRole="policy_request_details" />
         </EntityType>
         <EntityType Name="hospital_info">
           <Key>
@@ -200,7 +196,6 @@
           <Property Name="EMI" Type="Double" />
           <Property Name="CompanyId" Type="Int32" />
           <Property Name="Medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="company_details" Relationship="DB_MedicalCareModel.FK_company_details_policies" FromRole="policies" ToRole="company_details" />
         </EntityType>
         <EntityType Name="policies_on_employees">
           <Key>
@@ -218,7 +213,6 @@
           <Property Name="CompanyId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Medical" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="company_details" Relationship="DB_MedicalCareModel.FK_company_details_policies_on_employees" FromRole="policies_on_employees" ToRole="company_details" />
         </EntityType>
         <EntityType Name="policy_approval_details">
           <Key>
@@ -244,8 +238,6 @@
           <Property Name="CompanyId" Type="Int32" />
           <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="emp_register" Relationship="DB_MedicalCareModel.FK_emp_register_policy_request_details" FromRole="policy_request_details" ToRole="emp_register" />
-          <NavigationProperty Name="company_details" Relationship="DB_MedicalCareModel.FK_company_details_policy_request_details" FromRole="policy_request_details" ToRole="company_details" />
         </EntityType>
         <EntityType Name="policy_total_description">
           <Key>
@@ -271,39 +263,7 @@
           <EntitySet Name="policy_approval_details" EntityType="Self.policy_approval_details" />
           <EntitySet Name="policy_request_details" EntityType="Self.policy_request_details" />
           <EntitySet Name="policy_total_description" EntityType="Self.policy_total_description" />
-          <AssociationSet Name="FK_company_details_policies" Association="DB_MedicalCareModel.FK_company_details_policies">
-            <End Role="company_details" EntitySet="company_details" />
-            <End Role="policies" EntitySet="policies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_company_details_policies_on_employees" Association="DB_MedicalCareModel.FK_company_details_policies_on_employees">
-            <End Role="company_details" EntitySet="company_details" />
-            <End Role="policies_on_employees" EntitySet="policies_on_employees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_emp_register_policy_request_details" Association="DB_MedicalCareModel.FK_emp_register_policy_request_details">
-            <End Role="emp_register" EntitySet="emp_register" />
-            <End Role="policy_request_details" EntitySet="policy_request_details" />
-          </AssociationSet>
-          <AssociationSet Name="FK_company_details_policy_request_details" Association="DB_MedicalCareModel.FK_company_details_policy_request_details">
-            <End Role="company_details" EntitySet="company_details" />
-            <End Role="policy_request_details" EntitySet="policy_request_details" />
-          </AssociationSet>
         </EntityContainer>
-        <Association Name="FK_company_details_policies">
-          <End Type="DB_MedicalCareModel.company_details" Role="company_details" Multiplicity="1" />
-          <End Type="DB_MedicalCareModel.policies" Role="policies" Multiplicity="1" />
-        </Association>
-        <Association Name="FK_company_details_policies_on_employees">
-          <End Type="DB_MedicalCareModel.company_details" Role="company_details" Multiplicity="1" />
-          <End Type="DB_MedicalCareModel.policies_on_employees" Role="policies_on_employees" Multiplicity="1" />
-        </Association>
-        <Association Name="FK_emp_register_policy_request_details">
-          <End Type="DB_MedicalCareModel.emp_register" Role="emp_register" Multiplicity="1" />
-          <End Type="DB_MedicalCareModel.policy_request_details" Role="policy_request_details" Multiplicity="1" />
-        </Association>
-        <Association Name="FK_company_details_policy_request_details">
-          <End Type="DB_MedicalCareModel.company_details" Role="company_details" Multiplicity="1" />
-          <End Type="DB_MedicalCareModel.policy_request_details" Role="policy_request_details" Multiplicity="*" />
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

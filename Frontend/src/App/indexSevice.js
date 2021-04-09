@@ -8,6 +8,6 @@ export const SignOut = () => {
 };
 
 export const CheckSession = () => {
-    let url = "/api/auth/signin";
+    let url = "/api/adminlogin";
     return axios.get(url);
 };

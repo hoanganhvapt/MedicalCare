@@ -24,26 +24,27 @@ const NavCollapse = (props) => {
 
     let navItems = "";
     if (props.collapse.children) {
-        if (dataUser.length !== 0) {
-            const idRole = dataUser[0].role_id;
-            const collapses = props.collapse.children;
-            navItems = Object.keys(collapses).map((item) => {
-                item = collapses[item];
-                switch (item.type) {
-                    case "item":
-                        if (item.role) {
-                            for (let i = 0; i < item.role.length; i++) {
-                                if (idRole === item.role[i]) return <NavItem layout={props.layout} key={item.id} item={item} />;
-                                else continue;
-                            }
-                        }
-                        break;
+        // if (dataUser.length !== 0) {
+        // const idRole = dataUser[0].role_id;
+        const collapses = props.collapse.children;
+        navItems = Object.keys(collapses).map((item) => {
+            item = collapses[item];
+            switch (item.type) {
+                case "item":
+                    // if (item.role) {
+                    // for (let i = 0; i < item.role.length; i++) {
+                    // if ( idRole === item.role[ i ] ) return
+                    <NavItem layout={props.layout} key={item.id} item={item} />;
+                // else continue;
+                // }
+                // }
+                // break;
 
-                    default:
-                        return false;
-                }
-            });
-        }
+                default:
+                    return false;
+            }
+        });
+        // }
     }
 
     let itemTitle = props.collapse.title;

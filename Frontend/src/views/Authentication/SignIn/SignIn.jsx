@@ -22,6 +22,7 @@ const SignIn = (props) => {
         setLoading(true);
         Login({ usr_email: formSignIn.usr_email, usr_pwd: formSignIn.usr_pwd })
             .then((res) => {
+                console.log(res);
                 let result = res.data.data;
                 if (result.status === 404)
                     return setTimeout(async () => {
