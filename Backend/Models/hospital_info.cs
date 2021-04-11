@@ -14,10 +14,19 @@ namespace Medical_Care.Models
     
     public partial class hospital_info
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public hospital_info()
+        {
+            this.policies = new HashSet<policies>();
+        }
+    
         public int HospitalId { get; set; }
         public string HospitalName { get; set; }
         public string PhoneNo { get; set; }
         public string Location { get; set; }
         public string Url { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policies> policies { get; set; }
     }
 }

@@ -17,6 +17,9 @@
     <Property Name="Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
     <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="CompanyURL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="policies_on_employees_PoEId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="policies_on_employees" Relationship="Self.FK_company_details_policies_on_employees" FromRole="company_details" ToRole="policies_on_employees" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_company_details_policies" FromRole="company_details" ToRole="policies" />
   </EntityType>
   <EntityType Name="emp_register">
     <Key>
@@ -37,6 +40,9 @@
     <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PolicyStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="PolicyId" Type="Int32" />
+    <Property Name="policies_PolicyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_policies_emp_register" FromRole="emp_register" ToRole="policies" />
+    <NavigationProperty Name="policy_request_details" Relationship="Self.FK_policy_request_details_emp_register" FromRole="emp_register" ToRole="policy_request_details" />
   </EntityType>
   <EntityType Name="hospital_info">
     <Key>
@@ -47,6 +53,7 @@
     <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Url" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_hospital_info_policies" FromRole="hospital_info" ToRole="policies" />
   </EntityType>
   <EntityType Name="policies">
     <Key>
@@ -59,6 +66,13 @@
     <Property Name="EMI" Type="Double" />
     <Property Name="CompanyId" Type="Int32" />
     <Property Name="Medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HospitalId" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="policies_on_employees_PoEId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="emp_register" Relationship="Self.FK_policies_emp_register" FromRole="policies" ToRole="emp_register" />
+    <NavigationProperty Name="policies_on_employees" Relationship="Self.FK_policies_policies_on_employees" FromRole="policies" ToRole="policies_on_employees" />
+    <NavigationProperty Name="policy_total_description" Relationship="Self.FK_policy_total_description_policies" FromRole="policies" ToRole="policy_total_description" />
+    <NavigationProperty Name="company_details" Relationship="Self.FK_company_details_policies" FromRole="policies" ToRole="company_details" />
+    <NavigationProperty Name="hospital_info" Relationship="Self.FK_hospital_info_policies" FromRole="policies" ToRole="hospital_info" />
   </EntityType>
   <EntityType Name="policies_on_employees">
     <Key>
@@ -76,6 +90,8 @@
     <Property Name="CompanyId" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Medical" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="company_details" Relationship="Self.FK_company_details_policies_on_employees" FromRole="policies_on_employees" ToRole="company_details" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_policies_policies_on_employees" FromRole="policies_on_employees" ToRole="policies" />
   </EntityType>
   <EntityType Name="policy_approval_details">
     <Key>
@@ -87,6 +103,7 @@
     <Property Name="Amount" Type="Double" />
     <Property Name="Status" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
     <Property Name="Reason" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="policy_request_details" Relationship="Self.FK_policy_request_details_policy_approval_details" FromRole="policy_approval_details" ToRole="policy_request_details" />
   </EntityType>
   <EntityType Name="policy_request_details">
     <Key>
@@ -101,6 +118,10 @@
     <Property Name="CompanyId" Type="Int32" />
     <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="emp_register_EmpId" Type="Int32" Nullable="false" />
+    <Property Name="policy_approval_details_PolicyAppId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="emp_register" Relationship="Self.FK_policy_request_details_emp_register" FromRole="policy_request_details" ToRole="emp_register" />
+    <NavigationProperty Name="policy_approval_details" Relationship="Self.FK_policy_request_details_policy_approval_details" FromRole="policy_request_details" ToRole="policy_approval_details" />
   </EntityType>
   <EntityType Name="policy_total_description">
     <Key>
@@ -115,8 +136,90 @@
     <Property Name="PolicyDurationInMonth" Type="Int32" />
     <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="Medicalid" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="policies_PolicyId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="policies" Relationship="Self.FK_policy_total_description_policies" FromRole="policy_total_description" ToRole="policies" />
   </EntityType>
-  <EntityContainer Name="DB_MedicalCareEntities" annotation:LazyLoadingEnabled="true">
+  <Association Name="FK_company_details_policies_on_employees">
+    <End Role="policies_on_employees" Type="Self.policies_on_employees" Multiplicity="1" />
+    <End Role="company_details" Type="Self.company_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="policies_on_employees">
+        <PropertyRef Name="PoEId" />
+      </Principal>
+      <Dependent Role="company_details">
+        <PropertyRef Name="policies_on_employees_PoEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_policies_emp_register">
+    <End Role="policies" Type="Self.policies" Multiplicity="1" />
+    <End Role="emp_register" Type="Self.emp_register" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="policies">
+        <PropertyRef Name="PolicyId" />
+      </Principal>
+      <Dependent Role="emp_register">
+        <PropertyRef Name="policies_PolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_policy_request_details_emp_register">
+    <End Role="emp_register" Type="Self.emp_register" Multiplicity="1" />
+    <End Role="policy_request_details" Type="Self.policy_request_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="emp_register">
+        <PropertyRef Name="EmpId" />
+      </Principal>
+      <Dependent Role="policy_request_details">
+        <PropertyRef Name="emp_register_EmpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_policies_policies_on_employees">
+    <End Role="policies_on_employees" Type="Self.policies_on_employees" Multiplicity="1" />
+    <End Role="policies" Type="Self.policies" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="policies_on_employees">
+        <PropertyRef Name="PoEId" />
+      </Principal>
+      <Dependent Role="policies">
+        <PropertyRef Name="policies_on_employees_PoEId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_policy_total_description_policies">
+    <End Role="policies" Type="Self.policies" Multiplicity="1" />
+    <End Role="policy_total_description" Type="Self.policy_total_description" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="policies">
+        <PropertyRef Name="PolicyId" />
+      </Principal>
+      <Dependent Role="policy_total_description">
+        <PropertyRef Name="policies_PolicyId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_policy_request_details_policy_approval_details">
+    <End Role="policy_approval_details" Type="Self.policy_approval_details" Multiplicity="1" />
+    <End Role="policy_request_details" Type="Self.policy_request_details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="policy_approval_details">
+        <PropertyRef Name="PolicyAppId" />
+      </Principal>
+      <Dependent Role="policy_request_details">
+        <PropertyRef Name="policy_approval_details_PolicyAppId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_company_details_policies">
+    <End Role="company_details" Type="Self.company_details" Multiplicity="*" />
+    <End Role="policies" Type="Self.policies" Multiplicity="*" />
+  </Association>
+  <Association Name="FK_hospital_info_policies">
+    <End Role="hospital_info" Type="Self.hospital_info" Multiplicity="*" />
+    <End Role="policies" Type="Self.policies" Multiplicity="*" />
+  </Association>
+  <EntityContainer Name="DB_MedicalCareEntities1" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="admin_login" EntityType="Self.admin_login" />
     <EntitySet Name="company_details" EntityType="Self.company_details" />
     <EntitySet Name="emp_register" EntityType="Self.emp_register" />
@@ -126,5 +229,37 @@
     <EntitySet Name="policy_approval_details" EntityType="Self.policy_approval_details" />
     <EntitySet Name="policy_request_details" EntityType="Self.policy_request_details" />
     <EntitySet Name="policy_total_description" EntityType="Self.policy_total_description" />
+    <AssociationSet Name="FK_company_details_policies_on_employees" Association="Self.FK_company_details_policies_on_employees">
+      <End Role="policies_on_employees" EntitySet="policies_on_employees" />
+      <End Role="company_details" EntitySet="company_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_policies_emp_register" Association="Self.FK_policies_emp_register">
+      <End Role="policies" EntitySet="policies" />
+      <End Role="emp_register" EntitySet="emp_register" />
+    </AssociationSet>
+    <AssociationSet Name="FK_policy_request_details_emp_register" Association="Self.FK_policy_request_details_emp_register">
+      <End Role="emp_register" EntitySet="emp_register" />
+      <End Role="policy_request_details" EntitySet="policy_request_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_policies_policies_on_employees" Association="Self.FK_policies_policies_on_employees">
+      <End Role="policies_on_employees" EntitySet="policies_on_employees" />
+      <End Role="policies" EntitySet="policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_policy_total_description_policies" Association="Self.FK_policy_total_description_policies">
+      <End Role="policies" EntitySet="policies" />
+      <End Role="policy_total_description" EntitySet="policy_total_description" />
+    </AssociationSet>
+    <AssociationSet Name="FK_policy_request_details_policy_approval_details" Association="Self.FK_policy_request_details_policy_approval_details">
+      <End Role="policy_approval_details" EntitySet="policy_approval_details" />
+      <End Role="policy_request_details" EntitySet="policy_request_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_company_details_policies" Association="Self.FK_company_details_policies">
+      <End Role="company_details" EntitySet="company_details" />
+      <End Role="policies" EntitySet="policies" />
+    </AssociationSet>
+    <AssociationSet Name="FK_hospital_info_policies" Association="Self.FK_hospital_info_policies">
+      <End Role="hospital_info" EntitySet="hospital_info" />
+      <End Role="policies" EntitySet="policies" />
+    </AssociationSet>
   </EntityContainer>
 </Schema>

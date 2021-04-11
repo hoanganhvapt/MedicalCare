@@ -14,6 +14,12 @@ namespace Medical_Care.Models
     
     public partial class emp_register
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public emp_register()
+        {
+            this.policy_request_details = new HashSet<policy_request_details>();
+        }
+    
         public int EmpId { get; set; }
         public string Designation { get; set; }
         public Nullable<System.DateTime> Joindate { get; set; }
@@ -29,5 +35,10 @@ namespace Medical_Care.Models
         public string City { get; set; }
         public string PolicyStatus { get; set; }
         public Nullable<int> PolicyId { get; set; }
+        public int policies_PolicyId { get; set; }
+    
+        public virtual policies policies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policy_request_details> policy_request_details { get; set; }
     }
 }

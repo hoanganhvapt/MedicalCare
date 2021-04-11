@@ -13,10 +13,10 @@ namespace Medical_Care.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class DB_MedicalCareEntities : DbContext
+    public partial class DB_MedicalCareEntities1 : DbContext
     {
-        public DB_MedicalCareEntities()
-            : base("name=DB_MedicalCareEntities")
+        public DB_MedicalCareEntities1()
+            : base("name=DB_MedicalCareEntities1")
         {
         }
     

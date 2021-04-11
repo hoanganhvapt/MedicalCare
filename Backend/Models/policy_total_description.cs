@@ -23,5 +23,8 @@ namespace Medical_Care.Models
         public Nullable<int> PolicyDurationInMonth { get; set; }
         public string CompanyName { get; set; }
         public string Medicalid { get; set; }
+        public int policies_PolicyId { get; set; }
+    
+        public virtual policies policies { get; set; }
     }
 }
