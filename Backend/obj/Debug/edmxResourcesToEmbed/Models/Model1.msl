@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="DB_MedicalCareModelStoreContainer" CdmEntityContainer="DB_MedicalCareEntities">
+  <EntityContainerMapping StorageEntityContainer="DB_MedicalCareModelStoreContainer" CdmEntityContainer="DB_MedicalCareEntities1">
     <EntitySetMapping Name="admin_login">
       <EntityTypeMapping TypeName="DB_MedicalCareModel.admin_login">
         <MappingFragment StoreEntitySet="admin_login">
@@ -18,13 +18,14 @@
           <ScalarProperty Name="Address" ColumnName="Address" />
           <ScalarProperty Name="Phone" ColumnName="Phone" />
           <ScalarProperty Name="CompanyURL" ColumnName="CompanyURL" />
+          <ScalarProperty Name="policies_on_employees_PoEId" ColumnName="policies_on_employees_PoEId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="emp_register">
       <EntityTypeMapping TypeName="DB_MedicalCareModel.emp_register">
         <MappingFragment StoreEntitySet="emp_register">
-          <ScalarProperty Name="EmpId" ColumnName="EmpNo" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
           <ScalarProperty Name="Designation" ColumnName="Designation" />
           <ScalarProperty Name="Joindate" ColumnName="Joindate" />
           <ScalarProperty Name="Salary" ColumnName="Salary" />
@@ -39,6 +40,7 @@
           <ScalarProperty Name="City" ColumnName="City" />
           <ScalarProperty Name="PolicyStatus" ColumnName="PolicyStatus" />
           <ScalarProperty Name="PolicyId" ColumnName="PolicyId" />
+          <ScalarProperty Name="policies_PolicyId" ColumnName="policies_PolicyId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -60,9 +62,11 @@
           <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
           <ScalarProperty Name="PolicyDesc" ColumnName="PolicyDesc" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
-          <ScalarProperty Name="EMI" ColumnName="Emi" />
+          <ScalarProperty Name="EMI" ColumnName="EMI" />
           <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
-          <ScalarProperty Name="Medicalid" ColumnName="MedicalId" />
+          <ScalarProperty Name="Medicalid" ColumnName="Medicalid" />
+          <ScalarProperty Name="HospitalId" ColumnName="HospitalId" />
+          <ScalarProperty Name="policies_on_employees_PoEId" ColumnName="policies_on_employees_PoEId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,7 +79,7 @@
           <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
           <ScalarProperty Name="PolicyAmount" ColumnName="PolicyAmount" />
           <ScalarProperty Name="PolicyDuration" ColumnName="PolicyDuration" />
-          <ScalarProperty Name="EMI" ColumnName="Emi" />
+          <ScalarProperty Name="EMI" ColumnName="EMI" />
           <ScalarProperty Name="PstarDate" ColumnName="PstarDate" />
           <ScalarProperty Name="PendDate" ColumnName="PendDate" />
           <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
@@ -87,7 +91,7 @@
     <EntitySetMapping Name="policy_approval_details">
       <EntityTypeMapping TypeName="DB_MedicalCareModel.policy_approval_details">
         <MappingFragment StoreEntitySet="policy_approval_details">
-          <ScalarProperty Name="PolicyAppId" ColumnName="PolicyId" />
+          <ScalarProperty Name="PolicyAppId" ColumnName="PolicyAppId" />
           <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="Amount" ColumnName="Amount" />
@@ -101,13 +105,15 @@
         <MappingFragment StoreEntitySet="policy_request_details">
           <ScalarProperty Name="RequestId" ColumnName="RequestId" />
           <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
-          <ScalarProperty Name="EmpId" ColumnName="Empno" />
+          <ScalarProperty Name="EmpId" ColumnName="EmpId" />
           <ScalarProperty Name="Policyname" ColumnName="Policyname" />
           <ScalarProperty Name="PolicyAmount" ColumnName="PolicyAmount" />
-          <ScalarProperty Name="EMI" ColumnName="Emi" />
+          <ScalarProperty Name="EMI" ColumnName="EMI" />
           <ScalarProperty Name="CompanyId" ColumnName="CompanyId" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
           <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="emp_register_EmpId" ColumnName="emp_register_EmpId" />
+          <ScalarProperty Name="policy_approval_details_PolicyAppId" ColumnName="policy_approval_details_PolicyAppId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -119,12 +125,29 @@
           <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
           <ScalarProperty Name="PolicyDes" ColumnName="PolicyDes" />
           <ScalarProperty Name="PolicyAmount" ColumnName="PolicyAmount" />
-          <ScalarProperty Name="EMI" ColumnName="Emi" />
+          <ScalarProperty Name="EMI" ColumnName="EMI" />
           <ScalarProperty Name="PolicyDurationInMonth" ColumnName="PolicyDurationInMonth" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="Medicalid" ColumnName="MedicalId" />
+          <ScalarProperty Name="Medicalid" ColumnName="Medicalid" />
+          <ScalarProperty Name="policies_PolicyId" ColumnName="policies_PolicyId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <AssociationSetMapping Name="FK_company_details_policies" TypeName="DB_MedicalCareModel.FK_company_details_policies" StoreEntitySet="FK_company_details_policies">
+      <EndProperty Name="company_details">
+        <ScalarProperty Name="CompanyId" ColumnName="company_details_CompanyId" />
+      </EndProperty>
+      <EndProperty Name="policies">
+        <ScalarProperty Name="PolicyId" ColumnName="policies_PolicyId" />
+      </EndProperty>
+    </AssociationSetMapping>
+    <AssociationSetMapping Name="FK_hospital_info_policies" TypeName="DB_MedicalCareModel.FK_hospital_info_policies" StoreEntitySet="FK_hospital_info_policies">
+      <EndProperty Name="hospital_info">
+        <ScalarProperty Name="HospitalId" ColumnName="hospital_info_HospitalId" />
+      </EndProperty>
+      <EndProperty Name="policies">
+        <ScalarProperty Name="PolicyId" ColumnName="policies_PolicyId" />
+      </EndProperty>
+    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

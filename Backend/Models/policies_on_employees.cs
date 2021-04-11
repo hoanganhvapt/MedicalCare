@@ -14,6 +14,13 @@ namespace Medical_Care.Models
     
     public partial class policies_on_employees
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public policies_on_employees()
+        {
+            this.company_details = new HashSet<company_details>();
+            this.policies = new HashSet<policies>();
+        }
+    
         public int PoEId { get; set; }
         public string EmpNo { get; set; }
         public int PolicyId { get; set; }
@@ -26,5 +33,10 @@ namespace Medical_Care.Models
         public string CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Medical { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<company_details> company_details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policies> policies { get; set; }
     }
 }

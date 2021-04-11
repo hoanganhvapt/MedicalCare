@@ -14,11 +14,20 @@ namespace Medical_Care.Models
     
     public partial class policy_approval_details
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public policy_approval_details()
+        {
+            this.policy_request_details = new HashSet<policy_request_details>();
+        }
+    
         public int PolicyAppId { get; set; }
         public Nullable<int> RequestId { get; set; }
         public Nullable<System.DateTime> Date { get; set; }
         public Nullable<double> Amount { get; set; }
         public string Status { get; set; }
         public string Reason { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policy_request_details> policy_request_details { get; set; }
     }
 }

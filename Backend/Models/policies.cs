@@ -14,6 +14,15 @@ namespace Medical_Care.Models
     
     public partial class policies
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public policies()
+        {
+            this.emp_register = new HashSet<emp_register>();
+            this.policy_total_description = new HashSet<policy_total_description>();
+            this.company_details = new HashSet<company_details>();
+            this.hospital_info = new HashSet<hospital_info>();
+        }
+    
         public int PolicyId { get; set; }
         public Nullable<double> PolicyName { get; set; }
         public Nullable<double> PolicyDesc { get; set; }
@@ -21,5 +30,17 @@ namespace Medical_Care.Models
         public Nullable<double> EMI { get; set; }
         public Nullable<int> CompanyId { get; set; }
         public string Medicalid { get; set; }
+        public string HospitalId { get; set; }
+        public int policies_on_employees_PoEId { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<emp_register> emp_register { get; set; }
+        public virtual policies_on_employees policies_on_employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policy_total_description> policy_total_description { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<company_details> company_details { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<hospital_info> hospital_info { get; set; }
     }
 }

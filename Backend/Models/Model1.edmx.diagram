@@ -4,16 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="9812df9524854ccb974f3cb1755ea5b2" Name="Diagram1">
-        <EntityTypeShape EntityType="DB_MedicalCareModel.admin_login" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.company_details" Width="1.5" PointX="2.5" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.emp_register" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.hospital_info" Width="1.5" PointX="6.875" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.policies" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.policies_on_employees" Width="1.5" PointX="5" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_approval_details" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_request_details" Width="1.5" PointX="2.375" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_total_description" Width="1.5" PointX="8.875" PointY="1.375" IsExpanded="true" />
+      <Diagram DiagramId="8e0358e5bc9647729abbf40ab6f31938" Name="Diagram1">
+        <EntityTypeShape EntityType="DB_MedicalCareModel.admin_login" Width="1.5" PointX="0.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.company_details" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.emp_register" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.hospital_info" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policies" Width="1.5" PointX="5.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policies_on_employees" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_approval_details" Width="1.5" PointX="7.5" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_request_details" Width="1.5" PointX="9.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_MedicalCareModel.policy_total_description" Width="1.5" PointX="7.5" PointY="6.875" IsExpanded="true" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies_on_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_policies_emp_register" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_policy_request_details_emp_register" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_policies_policies_on_employees" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_policy_total_description_policies" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_policy_request_details_policy_approval_details" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_company_details_policies" ManuallyRouted="false" />
+        <AssociationConnector Association="DB_MedicalCareModel.FK_hospital_info_policies" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

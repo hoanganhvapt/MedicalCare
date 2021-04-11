@@ -14,10 +14,21 @@ namespace Medical_Care.Models
     
     public partial class company_details
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public company_details()
+        {
+            this.policies = new HashSet<policies>();
+        }
+    
         public int CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
         public string CompanyURL { get; set; }
+        public int policies_on_employees_PoEId { get; set; }
+    
+        public virtual policies_on_employees policies_on_employees { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<policies> policies { get; set; }
     }
 }

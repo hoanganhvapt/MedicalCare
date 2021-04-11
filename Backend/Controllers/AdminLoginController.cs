@@ -12,7 +12,7 @@ namespace Medical_Care.Controllers
 {
     public class AdminLoginController : ApiController
     {
-        private DB_MedicalCareEntities db = new DB_MedicalCareEntities();
+        private DB_MedicalCareEntities1 db = new DB_MedicalCareEntities1();
 
         public HttpResponseMessage Get()
         {
