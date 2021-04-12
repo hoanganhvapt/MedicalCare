@@ -15,6 +15,16 @@ const AdminLayout = Loadable({
     loading: Loader,
 });
 
+const UserLayout = Loadable({
+    loader: () => import("./layout/UserLayout/Home/Home"),
+    loading: Loader,
+});
+
+const SignIn = Loadable({
+    loader: () => import("./layout/UserLayout/SignIn/SignIn"),
+    loading: Loader,
+});
+
 const App = (props) => {
     const dispatch = useDispatch();
     const checkDataUser = useSelector((state) => state.user.dataUser);
@@ -54,7 +64,9 @@ const App = (props) => {
                 <Suspense fallback={<Loader />}>
                     <Switch>
                         {menu}
-                        <Route path="/" component={AdminLayout} />
+                        <Route path="/admin/dashboard" exact component={AdminLayout} />
+                        <Route path="/" exact component={UserLayout} />
+                        <Route path="/login" exact component={SignIn} />
                         {/* {dataUser === "signin" ? menu : <Route path="/" component={AdminLayout} />} */}
                         {/* {dataUser === "signin" ? <Redirect to="/auth/signin" /> : null} */}
                     </Switch>
