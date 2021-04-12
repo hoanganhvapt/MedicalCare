@@ -1546,7 +1546,6 @@ body {
 .pcoded-content {
     position: relative;
     display: block;
-    padding: 20px 30px 0 30px;
 }
 
 .pcoded-main-container {
@@ -1556,7 +1555,6 @@ body {
     clear: both;
     float: unset;
     right: 0;
-    margin-left: $Menu-width;
     min-height: 92vh;
     transition: all 0.3s ease-in-out;
 }
