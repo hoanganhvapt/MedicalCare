@@ -1,15 +1,12 @@
 import React, { Suspense } from "react";
 import Aux from "../../../../hoc/_Aux";
 import Loader from "../../Loader";
-import NavBar from "../Navbar/NavbarTop";
-import NavbarBottom from "../Navbar/NavbarBottom";
+import { homeObjFour, homeObjOne, homeObjThree } from "./Data";
 import HeroSection from "./HeroSection";
-import { homeObjOne, homeObjThree, homeObjTwo, homeObjFour } from "./Data";
 
 const HomeLayout = (props, ref) => {
     return (
         <Aux>
-            <NavBar />
             <div className="pcoded-main-container">
                 <div className="pcoded-wrapper">
                     <div className="pcoded-content">
@@ -20,7 +17,6 @@ const HomeLayout = (props, ref) => {
                                         <HeroSection {...homeObjThree} />
                                         <HeroSection {...homeObjOne} />
                                         <HeroSection {...homeObjFour} />
-                                        <HeroSection {...homeObjTwo} />
                                     </Suspense>
                                 </div>
                             </div>
@@ -28,7 +24,6 @@ const HomeLayout = (props, ref) => {
                     </div>
                 </div>
             </div>
-            <NavbarBottom />
         </Aux>
     );
 };

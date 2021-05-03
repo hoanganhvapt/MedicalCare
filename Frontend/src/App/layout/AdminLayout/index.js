@@ -58,7 +58,7 @@ const AdminLayout = (props, ref) => {
                                     <Suspense fallback={<Loader />}>
                                         <Switch>
                                             {menu}
-                                            <Redirect from="/" to={props.defaultPath} />
+                                                <Redirect from="/" to={props.defaultPath} />
                                         </Switch>
                                     </Suspense>
                                 </div>

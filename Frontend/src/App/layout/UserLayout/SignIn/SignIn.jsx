@@ -197,7 +197,7 @@ const SignIn = (props) => {
                                 <p className="mb-2 text-muted">
                                     Forgot password?{"  "}
                                     <NavLink
-                                        to="/auth/reset-password-1"
+                                        to="/reset-password"
                                         style={{ color: "#ff5f02" }}
                                     >
                                         Reset

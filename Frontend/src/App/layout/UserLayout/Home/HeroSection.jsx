@@ -49,7 +49,7 @@ function HeroSection({
                                 >
                                     {description}
                                 </p>
-                                <Link to="/sign-up">
+                                <Link to="/login">
                                     <Button>{buttonLabel}</Button>
                                 </Link>
                             </div>

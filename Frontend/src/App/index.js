@@ -9,6 +9,9 @@ import { CheckSession } from "./indexSevice";
 import { useDispatch, useSelector } from "react-redux";
 import { getDataUser } from "../actions/user";
 import jwt from "jsonwebtoken";
+import NavBar from "../App/layout/UserLayout/Navbar/NavbarTop";
+import NavbarBottom from "../App/layout/UserLayout/Navbar/NavbarBottom";
+import StepContext from "../App/layout/AdminLayout/EmpRegister/stepForm/StepContext"
 
 const AdminLayout = Loadable({
     loader: () => import("./layout/AdminLayout"),
@@ -22,6 +25,26 @@ const UserLayout = Loadable({
 
 const SignIn = Loadable({
     loader: () => import("./layout/UserLayout/SignIn/SignIn"),
+    loading: Loader,
+});
+
+const FeedBack = Loadable({
+    loader: () => import("./layout/UserLayout/FeedBack/Form"),
+    loading: Loader,
+});
+
+const Contact = Loadable({
+    loader: () => import("./layout/UserLayout/ContactUs/index"),
+    loading: Loader,
+});
+
+const EmpRegister = Loadable({
+    loader: () => import("./layout/AdminLayout/EmpRegister/index"),
+    loading: Loader,
+});
+
+const DisplayEmp = Loadable({
+    loader: () => import("./layout/AdminLayout/EmpRegister/displayEmp/DisplayEmp"),
     loading: Loader,
 });
 
@@ -60,18 +83,24 @@ const App = (props) => {
     }, [location.pathname]);
     return (
         <Aux>
+            <NavBar />
             <ScrollToTop>
                 <Suspense fallback={<Loader />}>
                     <Switch>
                         {menu}
+                        <Route path="/admin/employee-register" exact component={EmpRegister}><StepContext/></Route>
+                        <Route path="/admin/employee-details" exact component={DisplayEmp}><StepContext /></Route>
                         <Route path="/admin/dashboard" exact component={AdminLayout} />
                         <Route path="/" exact component={UserLayout} />
                         <Route path="/login" exact component={SignIn} />
+                        <Route path="/feedback" exact component={FeedBack} />
+                        <Route path="/contact" exact component={Contact} />
                         {/* {dataUser === "signin" ? menu : <Route path="/" component={AdminLayout} />} */}
                         {/* {dataUser === "signin" ? <Redirect to="/auth/signin" /> : null} */}
                     </Switch>
                 </Suspense>
             </ScrollToTop>
+            <NavbarBottom />
         </Aux>
     );
 };
