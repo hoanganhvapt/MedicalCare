@@ -47,6 +47,10 @@ const DisplayEmp = Loadable({
     loader: () => import("./layout/AdminLayout/EmpRegister/displayEmp/DisplayEmp"),
     loading: Loader,
 });
+const AddCompany = Loadable({
+    loader: () => import("./layout/AdminLayout/Company/AddCompany/index"),
+    loading: Loader,
+});
 
 const App = (props) => {
     const dispatch = useDispatch();
@@ -88,6 +92,7 @@ const App = (props) => {
                 <Suspense fallback={<Loader />}>
                     <Switch>
                         {menu}
+                        <Route path="/admin/add-company" exact component={AddCompany}></Route>
                         <Route path="/admin/employee-register" exact component={EmpRegister}><StepContext/></Route>
                         <Route path="/admin/employee-details" exact component={DisplayEmp}><StepContext /></Route>
                         <Route path="/admin/dashboard" exact component={AdminLayout} />

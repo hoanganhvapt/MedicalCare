@@ -4,7 +4,6 @@ import useForm from "react-hooks-form-validator";
 import { Button } from "@material-ui/core";
 import { Form } from "antd";
 import TextField from "@material-ui/core/TextField";
-import { multiStepContext } from "./StepContext";
 
 const FormItem = Form.Item;
 
@@ -33,7 +32,7 @@ const formConfig = {
         required: true,
         patterns: [
             {
-                regex: new RegExp(/^(84|0[3|5|7|8|9])+([0-9]{8})\b*$/),
+                regex: new RegExp(/^(09|03)+([0-9]{8})*$/),
                 errorMsg: "Please enter a only numeric",
             },
         ],
@@ -128,7 +127,6 @@ function AddCompany() {
                     fullWidth
                     color="primary"
                     style={{ margin: "1rem 0" }}
-                    onClick={() => setStep(2)}
                     disabled={!formData.isValid}
                     block
                 >
